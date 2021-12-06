@@ -61,3 +61,8 @@ def register(request):
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "app/register.html")
+
+
+def add_recepie(request):
+    if request.method == 'GET':
+        return render(request, 'app/add_recepie.html')
