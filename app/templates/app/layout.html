@@ -3,14 +3,14 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>{% block title %}Recepies{% endblock %}</title>
+        <title>{% block title %}Recipes{% endblock %}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link href="{% static 'app/styles.css' %}" rel="stylesheet">
     </head>
     <body>
 
         <nav class="navbar navbar-expand-sm navbar-light bg-light">
-            <a class="navbar-brand" href="#">Recepies</a>
+            <a class="navbar-brand" href="#">Recipes</a>
           
             <div>
               <ul class="navbar-nav mr-auto">
@@ -24,7 +24,7 @@
                 </li>
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'add_recepie' %}"> Add Recepie</a>
+                        <a class="nav-link" href="{% url 'add_recipe' %}"> Add Recipe</a>
                     </li>
 
                     <li class="nav-item">

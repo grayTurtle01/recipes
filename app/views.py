@@ -63,6 +63,6 @@ def register(request):
         return render(request, "app/register.html")
 
 
-def add_recepie(request):
+def add_recipe(request):
     if request.method == 'GET':
-        return render(request, 'app/add_recepie.html')
+        return render(request, 'app/add_recipe.html')
