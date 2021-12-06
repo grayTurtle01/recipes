@@ -1,5 +1,18 @@
 {% extends "app/layout.html" %}
 
 {% block body %}
-    TODO
+    <div class="container">
+
+        <div class="row">
+            {% for recipe in recipes %}
+            <div class="card col-lg-3 col-sm-6">
+                <h4>{{recipe.title}}</h4>
+                <img src="{{recipe.image_url}}">
+                <p>{{recipe.ingredients}}</p>
+                <p>{{recipe.description}}</p>
+                <p>{{recipe.tags}}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

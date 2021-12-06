@@ -13,3 +13,6 @@ class Recipe(models.Model):
     tags = models.CharField(max_length=50)
     description = models.CharField(max_length=400)
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.title}"

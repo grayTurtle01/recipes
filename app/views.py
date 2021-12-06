@@ -2,14 +2,17 @@ from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.http.response import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.urls import reverse
 
 from .models import User
 
 
 def index(request):
-    return render(request, "app/index.html")
+    recipies = Recipe.objects.all()
+    return render(request, "app/index.html", {
+        'recipes': recipies
+    })
 
 
 def login_view(request):
@@ -88,4 +91,5 @@ def add_recipe(request):
         new_recipe.save()
 
 
-        return JsonResponse(new_recipe_obj)
+        #return JsonResponse(new_recipe_obj)
+        return redirect('index')
