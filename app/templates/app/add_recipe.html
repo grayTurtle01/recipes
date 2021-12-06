@@ -3,10 +3,11 @@
 {% block body %}
   <div class="container text-center">
 
-    <h1>Add New Recepie</h1>
+    <h4>Add New Recepie</h4>
     
-    <form class="col-lg-4 col-sm-8 m-auto">
-      
+    <form method='POST' class="col-lg-4 col-sm-8 m-auto">
+      {% csrf_token %}
+
       <div class="form-group">
         <input name="title" placeholder="Title" class="form-control" autofocus>
       </div>
@@ -16,7 +17,7 @@
       </div>
       
       <div class="form-group">
-        <textarea name="description" rows=10 placeholder="Recepie" class="form-control"></textarea>  
+        <textarea name="description" rows=8 placeholder="Recepie" class="form-control"></textarea>  
       </div>
 
       <div class="form-group">
@@ -26,6 +27,10 @@
       <div class="form-group">
         <input name="tags" placeholder="Tags" class="form-control">
       </div>
+
+      <div class="form-group">
+        <input type="submit"  class="btn btn-primary w-100">
+      </div> 
 
     </form>
   </div>

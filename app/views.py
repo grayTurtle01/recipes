@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
+from django.http.response import JsonResponse
 from django.shortcuts import render
 from django.urls import reverse
 
@@ -66,3 +67,20 @@ def register(request):
 def add_recipe(request):
     if request.method == 'GET':
         return render(request, 'app/add_recipe.html')
+
+    if request.method == 'POST':
+        title = request.POST['title']
+        ingredients = request.POST['ingredients']
+        description = request.POST['description']
+        image_url = request.POST['image_url']
+        tags = request.POST['tags']
+
+        new_recipe = {
+            'title': title,
+            'ingredients': ingredients,
+            'description': description,
+            'image_ur': image_url,
+            'tags': tags
+        }
+
+        return JsonResponse(new_recipe)
