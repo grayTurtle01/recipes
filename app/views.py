@@ -63,7 +63,7 @@ def register(request):
     else:
         return render(request, "app/register.html")
 
-
+from app.models import Recipe
 def add_recipe(request):
     if request.method == 'GET':
         return render(request, 'app/add_recipe.html')
@@ -75,7 +75,7 @@ def add_recipe(request):
         image_url = request.POST['image_url']
         tags = request.POST['tags']
 
-        new_recipe = {
+        new_recipe_obj = {
             'title': title,
             'ingredients': ingredients,
             'description': description,
@@ -83,4 +83,9 @@ def add_recipe(request):
             'tags': tags
         }
 
-        return JsonResponse(new_recipe)
+        new_recipe = Recipe(title=title, ingredients=ingredients, description=description, 
+                            image_url=image_url, tags=tags, creator=request.user)
+        new_recipe.save()
+
+
+        return JsonResponse(new_recipe_obj)
