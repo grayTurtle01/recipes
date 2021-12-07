@@ -19,7 +19,11 @@
                     </ul>
                     <p>{{recipe.description}}</p>
                 </div>
-                    
+                
+                <div class='d-flex justify-content-end'>
+                    <a href="/edit_recipe/{{recipe.id}}" class="btn btn-sm btn-info">Edit</a>
+                </div>
+
                 <div class="card-footer">
                     {% for tag in recipe.tags|split:',' %}
                     <a href="/filter_by_tag/{{tag}}">

@@ -20,6 +20,8 @@
                     <p>{{recipe.description}}</p>
                 </div>
                     
+                <button>Edit</button>    
+
                 <div class="card-footer">
                     {% for tag in recipe.tags|split:',' %}  
                     <a href="/filter_by_tag/{{ tag }}">

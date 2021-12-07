@@ -101,4 +101,29 @@ def filter_by_tag(request, tag):
         'recipes': recipes
     })
 
+def edit_recipe(request, recipe_id):
+
+    if request.method == 'GET':
+
+        recipe = Recipe.objects.get(pk=recipe_id)
+
+        return render(request, 'app/edit_recipe.html', {
+            'recipe': recipe
+        })
    
+    if request.method == 'POST':
+        new_version = request.POST
+
+        recipe = Recipe.objects.get(pk=recipe_id)
+
+        recipe.title = new_version['title']
+        recipe.image_url = new_version['image_url']
+        recipe.description = new_version['description']
+        recipe.ingredients = new_version['ingredients']
+        recipe.tags = new_version['tags']
+
+        recipe.save()
+
+
+        #return JsonResponse(new_version)
+        return redirect('index')

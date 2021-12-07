@@ -1,0 +1,42 @@
+{% extends 'app/layout.html' %}
+
+{% block body %}
+  <div class="container text-center">
+
+    <h4>Edit Recipe</h4>
+    
+    <form action="/edit_recipe/{{recipe.id}}" method='POST' class="col-lg-4 col-sm-8 m-auto">
+      {% csrf_token %}
+
+      <div class="form-group">
+        <input name="title" placeholder="Title" class="form-control" 
+               value="{{recipe.title}}">
+      </div>
+      
+      <div class="form-group">
+        <input name="ingredients" placeholder="Ingredients" class="form-control"
+               value="{{recipe.ingredients}}">
+      </div>
+      
+      <div class="form-group">
+        <textarea name="description" rows=8 placeholder="Recepie" class="form-control">{{recipe.description}}</textarea>  
+      </div>
+
+      <div class="form-group">
+        <input name="image_url" placeholder="Image(url)" class="form-control"
+               value={{recipe.image_url}}>
+      </div> 
+      
+      <div class="form-group">
+        <input name="tags" placeholder="Tags" class="form-control"
+               value="{{recipe.tags}}">
+      </div>
+
+      <div class="form-group">
+        <input type="submit"  class="btn btn-primary w-100" value="Update Recipe">
+      </div> 
+
+    </form>
+  </div>
+    {% endblock %}
+    

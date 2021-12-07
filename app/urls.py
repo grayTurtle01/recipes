@@ -9,4 +9,5 @@ urlpatterns = [
     path("register", views.register, name="register"),
     path("add_recipe", views.add_recipe, name="add_recipe"),
     path("filter_by_tag/<str:tag>", views.filter_by_tag, name="filter_by_tag"),
+    path("edit_recipe/<int:recipe_id>", views.edit_recipe, name="edit_recipe"),
 ]
