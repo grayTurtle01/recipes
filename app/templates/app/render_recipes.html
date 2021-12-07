@@ -4,7 +4,7 @@
 
   <div class="row">
       {% for recipe in recipes %}
-      <div class="card col-lg-3 col-sm-6 p-0">
+      <div class="card col-lg-3 col-sm-6 p-0 mb-2">
           <h4>{{recipe.title}}</h4>
           <img src="{{recipe.image_url}}" class="recipe-image">
           
@@ -25,10 +25,10 @@
               <a href="/edit_recipe/{{recipe.id}}" class="btn btn-sm btn-info">Edit</a>
           </div>
 
-          <div class="card-footer">
+          <div class="card-footer p-1">
               {% for tag in recipe.tags|split:',' %}
               <a href="/filter_by_tag/{{tag}}">
-                  <small class="btn btn-sm btn-secondary rounded-pill mt-1 p-1 tag">{{tag}}</small>
+                  <small class="btn btn-sm btn-secondary rounded-pill my-1 p-1 tag">{{tag}}</small>
               </a>  
                   
               {% endfor %}

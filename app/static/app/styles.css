@@ -3,3 +3,7 @@
   height: 25vh;
   object-fit: cover;
 }
+
+.card small{
+  font-size: 12px;
+}
