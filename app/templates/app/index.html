@@ -2,40 +2,7 @@
 {% load my_filters %}
 
 {% block body %}
-    <div class="container">
-
-        <div class="row">
-            {% for recipe in recipes %}
-            <div class="card col-lg-3 col-sm-6 p-0">
-                <h4>{{recipe.title}}</h4>
-                <img src="{{recipe.image_url}}" class="recipe-image">
-                
-                <div class="card-body">
-
-                    <ul>
-                        {% for ingredient in recipe.ingredients|split:',' %}
-                        <li>{{ingredient}}</li>
-                        {% endfor %}
-                    </ul>
-                    <p>{{recipe.description}}</p>
-                </div>
-                
-                <div class='d-flex justify-content-end'>
-                    <a href="/edit_recipe/{{recipe.id}}" class="btn btn-sm btn-info">Edit</a>
-                </div>
-
-                <div class="card-footer">
-                    {% for tag in recipe.tags|split:',' %}
-                    <a href="/filter_by_tag/{{tag}}">
-                        <span class="btn btn-sm btn-secondary rounded-pill mt-1 p-1 tag">{{tag}}</span>
-                    </a>  
-                        
-                    {% endfor %}
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
+  {% include 'app/render_recipes.html' %}
 {% endblock %}
 
 {% block script %}
