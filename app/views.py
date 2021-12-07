@@ -93,3 +93,6 @@ def add_recipe(request):
 
         #return JsonResponse(new_recipe_obj)
         return redirect('index')
+
+def filter_by_tag(request, tag):
+    return JsonResponse({'tag':tag})

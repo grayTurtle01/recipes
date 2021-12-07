@@ -21,12 +21,24 @@
                 </div>
                     
                 <div class="card-footer">
-                    {% for tag in recipe.tags|split:',' %}
-                        <span class="btn btn-sm btn-secondary rounded-pill mt-1 p-1">{{tag}}</span>
+                    {% for tag in recipe.tags|split:',' %}  
+                        <span class="btn btn-sm btn-secondary rounded-pill mt-1 p-1 tag">{{tag}}</span>
+                        
                     {% endfor %}
                 </div>
             </div>
             {% endfor %}
         </div>
     </div>
+{% endblock %}
+
+{% block script %}
+<script>
+    tags = document.querySelectorAll('.tag')
+    tags.forEach( tag => {
+        tag.onclick = function(){
+            console.log(this.innerHTML)
+        }
+    })
+</script>
 {% endblock %}
