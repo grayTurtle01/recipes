@@ -95,4 +95,10 @@ def add_recipe(request):
         return redirect('index')
 
 def filter_by_tag(request, tag):
-    return JsonResponse({'tag':tag})
+    recipes = Recipe.objects.filter(tags__contains=tag)
+
+    return render(request, 'app/filter.html', {
+        'recipes': recipes
+    })
+
+   

@@ -21,11 +21,10 @@
                 </div>
                     
                 <div class="card-footer">
-                    {% for tag in recipe.tags|split:',' %}
-                    <a href="/filter_by_tag/{{tag}}">
+                    {% for tag in recipe.tags|split:',' %}  
+                    <a href="/filter_by_tag/{{ tag }}">
                         <span class="btn btn-sm btn-secondary rounded-pill mt-1 p-1 tag">{{tag}}</span>
-                    </a>  
-                        
+                    </a>
                     {% endfor %}
                 </div>
             </div>
