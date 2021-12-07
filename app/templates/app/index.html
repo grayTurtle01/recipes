@@ -1,4 +1,5 @@
 {% extends "app/layout.html" %}
+{% load my_filters %}
 
 {% block body %}
     <div class="container">
@@ -7,10 +8,20 @@
             {% for recipe in recipes %}
             <div class="card col-lg-3 col-sm-6">
                 <h4>{{recipe.title}}</h4>
-                <img src="{{recipe.image_url}}">
-                <p>{{recipe.ingredients}}</p>
+                <img src="{{recipe.image_url}}" class="recipe-image">
+                
+                <ul>
+                    {% for ingredient in recipe.ingredients|split:',' %}
+                        <li>{{ingredient}}</li>
+                    {% endfor %}
+                </ul>
                 <p>{{recipe.description}}</p>
-                <p>{{recipe.tags}}</p>
+
+                <div>
+                    {% for tag in recipe.tags|split:',' %}
+                        <span class="btn btn-sm btn-secondary rounded-pill">{{tag}}</span>
+                    {% endfor %}
+                </div>
             </div>
             {% endfor %}
         </div>
