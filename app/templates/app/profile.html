@@ -1,0 +1,10 @@
+{% extends "app/layout.html" %}
+{% load my_filters %}
+
+{% block body %}
+  <h2>{{profile_user.username}}</h2>
+  {% include 'app/render_recipes.html' %}
+{% endblock %}
+
+{% block script %}
+{% endblock %}

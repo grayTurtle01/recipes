@@ -127,3 +127,12 @@ def edit_recipe(request, recipe_id):
 
         #return JsonResponse(new_version)
         return redirect('index')
+
+def profile(request, user_id):
+    user = User.objects.get(pk=user_id)
+    recipes = Recipe.objects.filter(creator=user_id)
+
+    return render(request, 'app/profile.html', {
+        'recipes': recipes,
+        'profile_user': user
+    })
