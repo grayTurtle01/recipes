@@ -1,6 +1,7 @@
 from django.contrib import admin
-from app.models import User, Recipe
+from app.models import User, Recipe, DayMenu
 
 # Register your models here.
 admin.site.register(User)
 admin.site.register(Recipe)
+admin.site.register(DayMenu)

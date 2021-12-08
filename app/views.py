@@ -66,7 +66,7 @@ def register(request):
     else:
         return render(request, "app/register.html")
 
-from app.models import Recipe
+from app.models import Recipe, DayMenu
 def add_recipe(request):
     if request.method == 'GET':
         return render(request, 'app/add_recipe.html')
@@ -160,6 +160,23 @@ def add_menu(request):
 
     if request.method == 'POST':
         title = request.POST['title']
-        breakfast = request.POST['breakfast']
+        breakfast_id = request.POST['breakfast']
+        meal_id = request.POST['meal']
+        dinner_id = request.POST['dinner']
 
-        return HttpResponse(breakfast)
+        breakfast = Recipe.objects.get(pk=breakfast_id)
+        meal = Recipe.objects.get(pk=meal_id)
+        dinner = Recipe.objects.get(pk=dinner_id)
+
+        menu = DayMenu(title=title, 
+                       breakfast=breakfast, meal=meal, dinner=dinner,
+                       creator=request.user)
+        menu.save()
+
+        return redirect('show_menus')
+
+def show_menus(request):
+    menus = DayMenu.objects.all()
+    return render(request, 'app/menus.html',{
+        'menus': menus
+    })

@@ -1,0 +1,22 @@
+{% load my_filters %}
+
+<div class="container">
+
+  <div class="row">
+      {% for menu in menus %}
+        <div class="card col-lg-3 col-sm-6">
+            <h3>{{menu.title}}</h3>
+            
+            <p class="mb-0">{{menu.breakfast.title}}</p>
+            <img src="{{menu.breakfast.image_url}}" class="menu-image">
+
+            <p class="mb-0">{{menu.meal.title}}</p>
+            <img src="{{menu.meal.image_url}}" class="menu-image">
+
+            <p class="mb-0">{{menu.dinner.title}}</p>
+            <img src="{{menu.dinner.image_url}}" class="menu-image">    
+        </div>
+     
+      {% endfor %}
+  </div>
+</div>

@@ -1,47 +1,49 @@
 {% extends 'app/layout.html' %}
 
 {% block body %}
-  <form class="col-sm-5 col-lg-3 m-auto card p-3" method='POST'>
-    {% csrf_token %}
+  <div class="col-sm-6 col-lg-3 mx-auto mt-5 card p-3">
 
-    <div class="form-group" >
-      <input type="text" name="title" placeholder="Menu Title" class="form-control">
-    </div>
+    <form method='POST'>
+      {% csrf_token %}
 
-    
-    <div class="form-group">
-      <select name="breakfast" class="form-control">
-        <option disabled selected>Breakfast</option>
-        {% for breakfast in breakfasts %}
-          <option value="{{breakfast.id}}">{{breakfast.title}}</option>
-        {% endfor %}
-      </select>
-    </div>
+      <div class="form-group" >
+        <input type="text" name="title" placeholder="Menu Title" class="form-control">
+      </div>
 
-    <div class="form-group">
-      <select name="meal" class="form-control">
-        <option disabled selected>Meal</option>
-        {% for meal in meals %}
-          <option value="{{breakfast.id}}">{{meal.title}}</option>
-        {% endfor %}
-      </select>
-    </div>
+      
+      <div class="form-group">
+        <select name="breakfast" class="form-control">
+          <option disabled selected>Breakfast</option>
+          {% for breakfast in breakfasts %}
+            <option value="{{breakfast.id}}">{{breakfast.title}}</option>
+          {% endfor %}
+        </select>
+      </div>
 
-    <div class="form-group">
-      <select name="dinner" class="form-control">
-        <option disabled selected>Dinner</option>
-        {% for dinner in dinners %}
-        <option value="{{breakfast.id}}">{{dinner.title}}</option>
-        {% endfor %}
-      </select>
-    </div>
+      <div class="form-group">
+        <select name="meal" class="form-control">
+          <option disabled selected>Meal</option>
+          {% for meal in meals %}
+            <option value="{{meal.id}}">{{meal.title}}</option>
+          {% endfor %}
+        </select>
+      </div>
 
-    <div class="form-group">
-      <input type="submit" value="Add New Menu" class="btn btn-primary w-100">
-    </div>
+      <div class="form-group">
+        <select name="dinner" class="form-control">
+          <option disabled selected>Dinner</option>
+          {% for dinner in dinners %}
+          <option value="{{dinner.id}}">{{dinner.title}}</option>
+          {% endfor %}
+        </select>
+      </div>
 
-  </form>
+      <div class="form-group">
+        <input type="submit" value="Add New Menu" class="btn btn-primary w-100">
+      </div>
 
+    </form>
+  </div>
 
 
 {% endblock %}

@@ -16,3 +16,13 @@ class Recipe(models.Model):
 
     def __str__(self):
         return f"{self.title}"
+
+class DayMenu(models.Model):
+    title = models.CharField(max_length=30)
+    breakfast = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name="breakfasts")
+    meal = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name="meals" )
+    dinner = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name="dinners")
+    creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name="users")
+
+    def __str__(self):
+        return f"{self.title}"
