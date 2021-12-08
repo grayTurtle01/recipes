@@ -23,10 +23,14 @@
           </div>
           
           <div class='d-flex justify-content-between'>
+
               <a href="/profile/{{recipe.creator.id}}">
                   {{recipe.creator}}
               </a>
+              {% if recipe.creator == user %}
               <a href="/edit_recipe/{{recipe.id}}" class="btn btn-sm btn-info">Edit</a>
+              {% endif %}
+
           </div>
 
           <div class="card-footer p-1">
