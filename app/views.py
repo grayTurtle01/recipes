@@ -144,3 +144,22 @@ def recipe(request, recipe_id):
     return render(request, 'app/recipe.html', {
         'recipe': recipe
     } )
+
+def add_menu(request):
+
+    if request.method == 'GET':
+        breakfasts = Recipe.objects.filter(tags__contains='desayuno')
+        meals = Recipe.objects.filter(tags__contains='comida')
+        dinners = Recipe.objects.filter(tags__contains='cena')
+
+        return render(request, 'app/add_menu.html',{
+            'breakfasts': breakfasts,
+            'meals': meals,
+            'dinners': dinners
+        })
+
+    if request.method == 'POST':
+        title = request.POST['title']
+        breakfast = request.POST['breakfast']
+
+        return HttpResponse(breakfast)
