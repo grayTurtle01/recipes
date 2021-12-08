@@ -8,7 +8,7 @@ def split(text, sep):
   clean_words = []
 
   for word in words:
-    clean_word = word.replace(' ', '')
+    clean_word = word.strip(' ')
     clean_words.append(clean_word)
 
   return clean_words
