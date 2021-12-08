@@ -7,3 +7,8 @@
 .card small{
   font-size: 12px;
 }
+
+.card > a h4{
+  text-decoration: none;
+  color: black;
+}

@@ -137,3 +137,10 @@ def profile(request, user_id):
         'recipes': recipes,
         'profile_user': user
     })
+
+def recipe(request, recipe_id):
+    recipe = Recipe.objects.get(pk=recipe_id)
+
+    return render(request, 'app/recipe.html', {
+        'recipe': recipe
+    } )
