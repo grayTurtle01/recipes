@@ -2,9 +2,15 @@ from django import template
 
 register = template.Library()
 
+# return an array of string 
 def split(text, sep):
-  #text = text.replace(' ', '')
-  return text.split(sep)
+  words = text.split(sep)
+  clean_words = []
 
+  for word in words:
+    clean_word = word.replace(' ', '')
+    clean_words.append(clean_word)
+
+  return clean_words
 
 register.filter('split', split)
