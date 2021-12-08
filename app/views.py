@@ -98,7 +98,8 @@ def filter_by_tag(request, tag):
     recipes = Recipe.objects.filter(tags__contains=tag)
 
     return render(request, 'app/filter.html', {
-        'recipes': recipes
+        'recipes': recipes,
+        'tag': tag
     })
 
 def edit_recipe(request, recipe_id):
