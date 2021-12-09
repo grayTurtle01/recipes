@@ -14,7 +14,21 @@
             <img src="{{menu.meal.image_url}}" class="menu-image">
 
             <p class="mb-0">{{menu.dinner.title}}</p>
-            <img src="{{menu.dinner.image_url}}" class="menu-image">    
+            <img src="{{menu.dinner.image_url}}" class="menu-image">
+            
+            <div class='d-flex justify-content-between'>
+
+                <a href="/profile/{{recipe.creator.id}}" class="py-1">
+                    @{{menu.creator}}
+                </a>
+          
+            
+                {% if menu.creator == user %}
+                  <a href="/edit_menu/{{menu.id}}" class="btn btn-sm btn-info p-1">Edit</a>
+                {% endif %}
+          
+
+            </div>
         </div>
      
       {% endfor %}

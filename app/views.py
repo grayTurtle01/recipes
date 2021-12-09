@@ -127,7 +127,8 @@ def edit_recipe(request, recipe_id):
 
 
         #return JsonResponse(new_version)
-        return redirect('index')
+        #return redirect('index')
+        return HttpResponseRedirect( reverse('recipe', args=(recipe.id,)) )
 
 def profile(request, user_id):
     user = User.objects.get(pk=user_id)
@@ -180,3 +181,32 @@ def show_menus(request):
     return render(request, 'app/menus.html',{
         'menus': menus
     })
+
+def edit_menu(request, menu_id):
+
+    if request.method == 'GET':
+        menu = DayMenu.objects.get(pk=menu_id)
+
+        breakfasts = Recipe.objects.filter(tags__contains='desayuno')
+        meals = Recipe.objects.filter(tags__contains='comida')
+        dinners = Recipe.objects.filter(tags__contains='cena')
+
+
+        return render(request, 'app/edit_menu.html',{
+            'menu': menu,
+            'breakfasts': breakfasts,
+            'meals': meals,
+            'dinners': dinners
+        })
+    
+    if request.method == 'POST':
+        menu = DayMenu.objects.get(pk=menu_id)
+
+        menu.title = request.POST['title']
+        menu.breakfast = Recipe.objects.get(pk = request.POST['breakfast'])
+        menu.meal = Recipe.objects.get(pk = request.POST['meal'])
+        menu.dinner = Recipe.objects.get(pk = request.POST['dinner'])
+
+        menu.save()
+        
+        return HttpResponseRedirect(reverse('show_menus'))

@@ -1,0 +1,62 @@
+{% extends 'app/layout.html' %}
+
+{% block body %}
+  <div class="col-sm-6 col-lg-3 mx-auto mt-5 card p-3">
+
+    <form method='POST'>
+      {% csrf_token %}
+
+      <div class="form-group" >
+        <input type="text" name="title" placeholder="Menu Title" class="form-control"
+               value="{{menu.title}}">
+      </div>
+
+      
+      <div class="form-group">
+        <select name="breakfast" class="form-control">
+          <option disabled>Breakfast</option>
+          {% for breakfast in breakfasts %}
+            {% if menu.breakfast.title == breakfast.title %}
+              <option value="{{breakfast.id}}" selected>{{breakfast.title}}</option>
+            {% else %}
+              <option value="{{breakfast.id}}">{{breakfast.title}}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="form-group">
+        <select name="meal" class="form-control" value={{menu.meal.title}}>
+          <option disabled>Meal</option>
+          {% for meal in meals %}
+            {% if menu.meal.title == meal.title %}
+              <option value="{{meal.id}}" selected>{{meal.title}}</option>
+            {% else %}
+              <option value="{{meal.id}}">{{meal.title}}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="form-group">
+        <select name="dinner" class="form-control" value={{menu.dinner.title}}>
+          <option disabled>Dinner</option>
+          {% for dinner in dinners %}
+            {% if menu.dinner.title == dinner.title %}
+              <option value="{{dinner.id}}" selected>{{dinner.title}}</option>
+            {% else %}
+              <option value="{{dinner.id}}">{{dinner.title}}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="form-group">
+        <input type="submit" value="Add New Menu" class="btn btn-primary w-100">
+      </div>
+
+    </form>
+  </div>
+
+
+{% endblock %}
