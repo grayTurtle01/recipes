@@ -18,4 +18,10 @@
   height: 20vh;
   object-fit: cover;
   margin-bottom: 15px;
+  display: none;
+}
+
+.card-menu a p{
+  text-decoration: none;
+  color : black
 }

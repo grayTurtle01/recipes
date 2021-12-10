@@ -4,16 +4,22 @@
 
   <div class="row">
       {% for menu in menus %}
-        <div class="card col-lg-3 col-sm-6">
+        <div class="card col-lg-2 col-sm-4 p-0 card-menu">
             <h3>{{menu.title}}</h3>
             
-            <p class="mb-0">{{menu.breakfast.title}}</p>
+            <a href="/recipe/{{menu.breakfast.id}}">
+              <p class="mb-0">{{menu.breakfast.title}}</p>
+            </a>
             <img src="{{menu.breakfast.image_url}}" class="menu-image">
 
-            <p class="mb-0">{{menu.meal.title}}</p>
+            <a href="/recipe/{{menu.meal.id}}">
+              <p class="mb-0">{{menu.meal.title}}</p>
+            </a>
             <img src="{{menu.meal.image_url}}" class="menu-image">
 
-            <p class="mb-0">{{menu.dinner.title}}</p>
+            <a href="/recipe/{{menu.dinner.id}}">
+              <p class="mb-0">{{menu.dinner.title}}</p>
+            </a>
             <img src="{{menu.dinner.image_url}}" class="menu-image">
             
             <div class='d-flex justify-content-between'>
