@@ -237,3 +237,28 @@ def random_menu(request):
     return render(request, 'app/random_menu.html',{
         'recipes': recipes
     })
+
+def random_week(request):
+
+    breakfasts = Recipe.objects.filter(tags__contains="desayuno")
+    meals = Recipe.objects.filter(tags__contains="comida")
+    dinners = Recipe.objects.filter(tags__contains="cena")
+
+    week_menus = []
+
+    for day in range(6):
+        title = f"Day {day+1}"
+        breakfast = random.choice(breakfasts)
+        meal = random.choice(meals)
+        dinner = random.choice(dinners)
+
+        day_menu = DayMenu(title=title, 
+                       breakfast=breakfast, meal=meal, dinner=dinner,
+                       creator=request.user)
+
+        week_menus.append(day_menu)
+
+
+    return render(request, 'app/random_week.html',{
+        'menus': week_menus
+    })
