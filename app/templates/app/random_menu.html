@@ -2,33 +2,6 @@
 {% load my_filters %}
 
 {% block body %}
-  <h2>Random Menu</h2>
-  <button id="toggle_menus">Show Images</button>
-  {% include 'app/render_menus.html' %}
+  <h3>Random Day Menu</h3>
   {% include 'app/render_recipes.html' %}
-{% endblock %}
-
-{% block script %}
-  <script>
-    let show = false
-
-    document.querySelector('#toggle_menus').onclick = (event)=>  {
-       show = !show
-       console.log(show)
-       let images = document.querySelectorAll('.menu-image')
-
-       images.forEach( image => {
-         if( show == true ){
-          image.style.display = 'block'
-          event.target.innerText = 'Hide Images'
-        }
-        else{
-          image.style.display = 'none'
-          event.target.innerText = 'Show Images'
-         }
-          
-       }) 
-
-    }
-  </script>
 {% endblock %}

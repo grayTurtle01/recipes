@@ -224,8 +224,16 @@ def random_recipe(request):
 def random_menu(request):
 
     breakfasts = Recipe.objects.filter(tags__contains="desayuno")
+    breakfast = random.choice(breakfasts)
+
+    meals = Recipe.objects.filter(tags__contains="comida")
+    meal = random.choice(meals)
+
+    dinners = Recipe.objects.filter(tags__contains="cena")
+    dinner = random.choice(dinners)
+
+    recipes = [breakfast, meal, dinner]
 
     return render(request, 'app/random_menu.html',{
-        'recipes': breakfasts
+        'recipes': recipes
     })
-    #return render(request, 'app/random_menu.html')
