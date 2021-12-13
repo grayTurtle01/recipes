@@ -15,4 +15,6 @@ urlpatterns = [
     path("add_menu", views.add_menu, name="add_menu"),
     path("show_menus", views.show_menus, name="show_menus"),
     path("edit_menu/<int:menu_id>", views.edit_menu, name="edit_menu"),
+    path("random_recipe/", views.random_recipe, name="random_recipe"),
+    path("random_menu/", views.random_menu, name="random_menu"),
 ]

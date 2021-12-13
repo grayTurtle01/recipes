@@ -1,0 +1,10 @@
+{% extends "app/layout.html" %}
+{% load my_filters %}
+
+{% block body %}
+  <div class="container">
+    <h3 class="text-center">Random Recipe</h3>
+      {% include 'app/render_recipe.html' %}
+  </div>
+{% endblock %}
+

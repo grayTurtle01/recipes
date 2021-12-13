@@ -210,3 +210,22 @@ def edit_menu(request, menu_id):
         menu.save()
         
         return HttpResponseRedirect(reverse('show_menus'))
+
+import random
+def random_recipe(request):
+
+    recipes = Recipe.objects.all()
+    recipe = random.choice( recipes )
+
+    return render(request, 'app/random_recipe.html',{
+        'recipe': recipe
+    })
+
+def random_menu(request):
+
+    breakfasts = Recipe.objects.filter(tags__contains="desayuno")
+
+    return render(request, 'app/random_menu.html',{
+        'recipes': breakfasts
+    })
+    #return render(request, 'app/random_menu.html')
