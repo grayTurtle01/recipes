@@ -276,12 +276,12 @@ def get_fat(request):
         
         height = int(payload['height'])
         weight = int(payload['weight'])
-        wrist =  int(payload['wrist'])
-        waist =  int(payload['waist'])
+        age =  int(payload['age'])
+        gender =  payload['gender']
+        print('-->', gender)
 
-        imc = weight/((height/100)**2)
-        imc = round(imc, 3)
-        imc_message = ""
+       
+        imc = indice_masa_corporal(height, weight)
 
         if imc > 21 and imc < 25:
             imc_message = "good"
@@ -290,6 +290,17 @@ def get_fat(request):
         elif imc >= 25:
             imc_message = "hight"
 
+        fbp = fat_body_porcentaje(imc, age, int(gender))
 
         return JsonResponse({'imc': imc,
-                             'imc_message': imc_message})
+                             'imc_message': imc_message,
+                             'fbp': fbp})
+
+def indice_masa_corporal(height, weight):
+     imc = weight/((height/100)**2)
+     return  round(imc, 3)
+
+def fat_body_porcentaje(imc, age, gender):
+    fbp = (1.39 * imc) + (0.16 * age) - (10.34 * gender) - 9
+    return round(fbp, 3)
+
