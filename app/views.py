@@ -263,20 +263,33 @@ def random_week(request):
         'menus': week_menus
     })
 
+import json
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
 def get_fat(request):
     if request.method == 'GET':
         return render(request, "app/get_fat.html")
     
     if request.method == 'POST':
-        data = request.POST
+        payload = json.loads(request.body)
         
-        height = int(data['height'])
-        weight = int(data['weight'])
-        wrist =  int(data['wrist'])
-        waist =  int(data['waist'])
+        height = int(payload['height'])
+        weight = int(payload['weight'])
+        wrist =  int(payload['wrist'])
+        waist =  int(payload['waist'])
 
-        r = height * weight * wrist * waist
-        print( '-->', r)
+        imc = weight/((height/100)**2)
+        imc = round(imc, 3)
+        imc_message = ""
+
+        if imc > 21 and imc < 25:
+            imc_message = "good"
+        elif imc <= 21:
+            imc_message = "low"
+        elif imc >= 25:
+            imc_message = "hight"
 
 
-        return JsonResponse(data)
+        return JsonResponse({'imc': imc,
+                             'imc_message': imc_message})

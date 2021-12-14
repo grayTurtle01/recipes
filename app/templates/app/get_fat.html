@@ -2,38 +2,103 @@
 
 {% block body %}
 
-    <div class="card col-lg-3 col-sm-6 mx-auto mt-3 p-3">
+    <div class="container">
+      <div class="row justify-content-center">
 
-        <h2 class="text-center">Get Fat</h2>
-          
-        <form method='POST' class="mt-3">
-            {% csrf_token %}
+        <div class="card col-lg-3 col-sm-6">
 
-            <div class="form-group mb-4">
-                <label class="form-label" for="height">Height (cm) </label>
-                <input autofocus class="form-control" type="number" name="height" id="height" required>
-            </div>
+            <h2 class="text-center">Get Fat</h2>
+              
+            <form onsubmit="get_data(); return false" class="mt-3">
+        
+                <div class="form-group mb-4">
+                    <label class="form-label" for="height">Height (cm)</label>
+                    <input autofocus class="form-control" type="number" name="height" id="height" required>
+                </div>
 
-            <div class="form-group mb-4">
-              <label class="form-label" for="weight">Weight (kg) </label>
-                <input class="form-control" type="number" name="weight" id="weight" required>
-            </div>
+                <div class="form-group mb-4">
+                  <label class="form-label" for="weight">Weight (kg) </label>
+                    <input class="form-control" type="number" name="weight" id="weight" required>
+                </div>
 
-            <div class="form-group mb-4">
-              <label class="form-label" for="wrist">Wrist (cm) </label>
-              <input class="form-control" type="number" name="wrist" id="wrist" required>
-           </div>
+                <div class="form-group mb-4">
+                  <label class="form-label" for="wrist">Wrist (cm) </label>
+                  <input class="form-control" type="number" name="wrist" id="wrist" required>
+              </div>
 
-           <div class="form-group mb-4">
-            <label class="form-label" for="waist">Waist (cm) </label>
-            <input class="form-control" type="number" name="waist" id="waist" required>
-           </div>
+              <div class="form-group mb-4">
+                <label class="form-label" for="waist">Waist (cm) </label>
+                <input class="form-control" type="number" name="waist" id="waist" required>
+              </div>
 
 
+              <input class="btn btn-primary w-100 mb-5" type="submit" value="Get Fat">
 
-            <input class="btn btn-primary w-100 mb-5" type="submit" value="Get Fat">
-        </form>
-    
+            </form>
+        
+        </div>
+
+        <div class="card col-lg-3 col-sm-6">
+          <h2>Results:</h2>
+
+          <label for="imc">Indice de Masa Corporal:</label>
+          <input type="text" id="imc" readonly>
+          <div id="imc_message" class="alert p-0 text-center" ></div>
+             
+
+        </div>
+
+      </div>
     </div>
 
+{% endblock %}
+
+{% block script%}
+    <script>
+
+      function get_data() {
+        fetch('/get_fat', {
+          'method': 'POST',
+          
+          'headers': {
+            'Content-Type': 'application/json'
+          },
+
+          'body': JSON.stringify({
+            'height': document.querySelector('#height').value,
+            'weight': document.querySelector('#weight').value,
+            'wrist': document.querySelector('#wrist').value,
+            'waist': document.querySelector('#waist').value,
+          })
+
+        })
+        .then( res => res.json())
+        .then( data => {
+          imc = data.imc
+          imc_message = data.imc_message
+          imc_alert = document.querySelector('#imc_message')
+          imc_alert.innerText = imc_message
+
+          document.querySelector('#imc').value = imc
+          
+          if( imc_message == 'good'){
+            imc_alert.classList.remove('alert-warning')
+            imc_alert.classList.remove('alert-danger')
+            imc_alert.classList.add('alert-success')
+          }
+          else if( imc_message == 'low'){
+            imc_alert.classList.remove('alert-success')
+            imc_alert.classList.remove('alert-danger')
+            imc_alert.classList.add('alert-warning')
+          }
+          else if( imc_message == 'hight'){
+            imc_alert.classList.remove('alert-warning')
+            imc_alert.classList.remove('alert-success')
+            imc_alert.classList.add('alert-danger')
+          }
+
+        })  
+
+      }
+    </script>
 {% endblock %}
