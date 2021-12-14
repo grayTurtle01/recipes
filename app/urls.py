@@ -18,4 +18,5 @@ urlpatterns = [
     path("random_recipe/", views.random_recipe, name="random_recipe"),
     path("random_menu/", views.random_menu, name="random_menu"),
     path("random_week/", views.random_week, name="random_week"),
+    path("get_fat/", views.get_fat, name="get_fat"),
 ]

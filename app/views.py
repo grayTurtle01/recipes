@@ -262,3 +262,21 @@ def random_week(request):
     return render(request, 'app/random_week.html',{
         'menus': week_menus
     })
+
+def get_fat(request):
+    if request.method == 'GET':
+        return render(request, "app/get_fat.html")
+    
+    if request.method == 'POST':
+        data = request.POST
+        
+        height = int(data['height'])
+        weight = int(data['weight'])
+        wrist =  int(data['wrist'])
+        waist =  int(data['waist'])
+
+        r = height * weight * wrist * waist
+        print( '-->', r)
+
+
+        return JsonResponse(data)
