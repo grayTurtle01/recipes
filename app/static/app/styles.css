@@ -21,7 +21,11 @@
   display: none;
 }
 
-.card-menu a p{
+.card-menu a{
   text-decoration: none;
   color : black
+}
+
+.card-footer a{
+  text-decoration: none;
 }

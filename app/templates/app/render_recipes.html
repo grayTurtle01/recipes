@@ -40,7 +40,7 @@
 
           <div class="card-footer p-1">
               {% for tag in recipe.tags|split:',' %}
-              <a href="/filter_by_tag/{{tag}}">
+              <a href="/filter_by_tag/{{tag}}" >
                   <small class="btn btn-sm btn-secondary rounded-pill my-1 p-1 tag">{{tag}}</small>
               </a>  
                   
