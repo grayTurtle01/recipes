@@ -29,7 +29,7 @@
               <div class="form-group mb-4">
 
                 <label class="form-label" for="male">Male</label>
-                <input  type="radio" name="gender" value="1" id="male">
+                <input  type="radio" name="gender" value="1" id="male" checked>
 
                 <label class="form-label" for="female">Female</label>
                 <input  type="radio" name="gender" value="0" id="female">
@@ -49,6 +49,11 @@
           <div class="form-group">
             <label for="imc">Indice de Masa Corporal:</label>
             <input type="text" id="imc" readonly>
+            <div class='row text-center'>
+              <div class="col-4 card" id="imc-low">Low</div>  
+              <div class="col-4 card" id="imc-good">Good</div>  
+              <div class="col-4 card" id="imc-hight">Hight</div>  
+            </div>
             <div id="imc_message" class="alert p-0 text-center" ></div>
           </div>
           
@@ -99,16 +104,37 @@
             imc_alert.classList.remove('alert-warning')
             imc_alert.classList.remove('alert-danger')
             imc_alert.classList.add('alert-success')
+
+            document.querySelector('#imc-low').classList.remove('bg-warning') 
+            document.querySelector('#imc-good').classList.add('bg-success')  
+            document.querySelector('#imc-hight').classList.remove('bg-danger') 
+
+            document.querySelector('#imc_message').innerText= "21 < imc < 25"
+
           }
           else if( imc_message == 'low'){
             imc_alert.classList.remove('alert-success')
             imc_alert.classList.remove('alert-danger')
             imc_alert.classList.add('alert-warning')
+
+            document.querySelector('#imc-low').classList.add('bg-warning')
+            document.querySelector('#imc-good').classList.remove('bg-success')
+            document.querySelector('#imc-hight').classList.remove('bg-danger')  
+
+            document.querySelector('#imc_message').innerText= "imc <= 21"
+
           }
           else if( imc_message == 'hight'){
             imc_alert.classList.remove('alert-warning')
             imc_alert.classList.remove('alert-success')
             imc_alert.classList.add('alert-danger')
+
+            document.querySelector('#imc-hight').classList.add('bg-danger')
+            document.querySelector('#imc-good').classList.remove('bg-success')
+            document.querySelector('#imc-low').classList.remove('bg-warning')  
+
+            document.querySelector('#imc_message').innerText= "imc >= 25"
+
           }
 
 
