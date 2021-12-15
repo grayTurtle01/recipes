@@ -291,10 +291,12 @@ def get_fat(request):
             imc_message = "hight"
 
         fbp = fat_body_porcentaje(imc, age, int(gender))
+        fbp_message = analize_fbp(fbp, int(gender) )
 
         return JsonResponse({'imc': imc,
                              'imc_message': imc_message,
-                             'fbp': fbp})
+                             'fbp': fbp,
+                             'fbp_message': fbp_message})
 
 def indice_masa_corporal(height, weight):
      imc = weight/((height/100)**2)
@@ -302,5 +304,22 @@ def indice_masa_corporal(height, weight):
 
 def fat_body_porcentaje(imc, age, gender):
     fbp = (1.39 * imc) + (0.16 * age) - (10.34 * gender) - 9
-    return round(fbp, 3)
+    return round(fbp, 2)
+
+def analize_fbp(fbp, gender):
+    if gender == 1:
+        if fbp < 7:
+            return 'low'
+        elif fbp > 15:
+            return 'hight'
+        else:
+            return 'good'
+    if gender == 0:
+        if fbp < 13:
+            return 'low'
+        elif fbp > 22:
+            return 'hight'
+        else:
+            return 'good'
+
 

@@ -44,23 +44,35 @@
         </div>
 
         <div class="card col-lg-3 col-sm-6">
-          <h2>Results:</h2>
+          <h2 class='text-center'>Results</h2>
 
           <div class="form-group">
-            <label for="imc">Indice de Masa Corporal:</label>
-            <input type="text" id="imc" readonly>
+            <div class="mb-3 row ">
+              <span for="imc" class="col-9 m-0">Body Mass Index:</span>
+              <input type="text" id="imc" readonly class="col-3 p-0">
+            </div>
             <div class='row text-center'>
               <div class="col-4 card" id="imc-low">Low</div>  
               <div class="col-4 card" id="imc-good">Good</div>  
               <div class="col-4 card" id="imc-hight">Hight</div>  
             </div>
-            <div id="imc_message" class="alert p-0 text-center" ></div>
+            <div id="imc_message" class="alert p-0 text-center" >bmi</div>
           </div>
           
           <div class="form-group">
-            <label for="imc">Fat Body Porcentage:</label>
-            <input type="text" id="fbp" readonly>
-            <div id="fbp_message" class="alert p-0 text-center" ></div>
+            <div class="row">
+
+              <label for="imc" class="col-9 m-0">Fat Body Porcentage:</label>
+              <input type="text" id="fbp" readonly class='col-3 p-0 m-0'>
+            </div>
+
+            <div class='row text-center'>
+              <div class="col-4 card" id="bfp-low">Low</div>  
+              <div class="col-4 card" id="bfp-good">Good</div>  
+              <div class="col-4 card" id="bfp-hight">Hight</div>  
+            </div>
+
+              <div id="bfp_message" class="alert p-0 text-center" >fbp</div>
           </div>
 
 
@@ -109,7 +121,7 @@
             document.querySelector('#imc-good').classList.add('bg-success')  
             document.querySelector('#imc-hight').classList.remove('bg-danger') 
 
-            document.querySelector('#imc_message').innerText= "21 < imc < 25"
+            document.querySelector('#imc_message').innerText= "21 < bmi < 25"
 
           }
           else if( imc_message == 'low'){
@@ -121,7 +133,7 @@
             document.querySelector('#imc-good').classList.remove('bg-success')
             document.querySelector('#imc-hight').classList.remove('bg-danger')  
 
-            document.querySelector('#imc_message').innerText= "imc <= 21"
+            document.querySelector('#imc_message').innerText= "bmi <= 21"
 
           }
           else if( imc_message == 'hight'){
@@ -133,9 +145,39 @@
             document.querySelector('#imc-good').classList.remove('bg-success')
             document.querySelector('#imc-low').classList.remove('bg-warning')  
 
-            document.querySelector('#imc_message').innerText= "imc >= 25"
+            document.querySelector('#imc_message').innerText= "bmi >= 25"
 
           }
+
+
+          if( data.fbp_message == 'good'){
+            document.querySelector('#bfp-good').classList.add('bg-success')
+            document.querySelector('#bfp-low').classList.remove('bg-warning')
+            document.querySelector('#bfp-hight').classList.remove('bg-danger')
+
+            document.querySelector('#bfp_message').innerHTML = '7% <= bfp <= 15%'
+            document.querySelector('#bfp_message').className = 'alert alert-success p-0 text-center'
+
+          }
+
+          else if( data.fbp_message == 'hight'){
+            document.querySelector('#bfp-good').classList.remove('bg-success')
+            document.querySelector('#bfp-low').classList.remove('bg-warning')
+            document.querySelector('#bfp-hight').classList.add('bg-danger')
+
+            document.querySelector('#bfp_message').innerHTML = 'bfp > 15%'
+            document.querySelector('#bfp_message').className = 'alert alert-danger p-0 text-center'
+          }
+
+          else if( data.fbp_message == 'low'){
+            document.querySelector('#bfp-good').classList.remove('bg-success')
+            document.querySelector('#bfp-low').classList.add('bg-warning')
+            document.querySelector('#bfp-hight').classList.remove('bg-danger')
+
+            document.querySelector('#bfp_message').innerHTML = 'bfp < 7%'
+            document.querySelector('#bfp_message').className = 'alert alert-warning p-0 text-center'
+          }
+
 
 
           document.querySelector('#fbp').value = data.fbp + '%'
