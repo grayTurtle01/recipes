@@ -310,7 +310,7 @@ def analize_fbp(fbp, gender):
     if gender == 1:
         if fbp < 7:
             return 'low'
-        elif fbp > 15:
+        elif fbp > 22:
             return 'hight'
         else:
             return 'good'
