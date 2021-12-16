@@ -4,7 +4,7 @@
 
     <div class="row">
 
-      <div class="card col-lg-3 col-sm-6 m-2 p-3 text-center">
+      <div class="card col-lg-3 col-sm-5 m-2 p-3 text-center">
         
         <h2>Shopping List</h2>
         
@@ -19,9 +19,13 @@
         
       </div>
       
-      <div class="card col-lg-3 text-center m-2 p-3">        
+      <div class="card col-lg-3 col-sm-5 text-center m-2 p-3">        
         <h2>Products</h2>
-        <ul id="products" class="text-left"></ul>
+        <ul id="products" class="text-left">
+          {% for product in products %}
+            <li>{{product.name}} {{product.price}}</li>
+          {% endfor %}
+        </ul>
         <p class="text-right">Total: <span id="total">0</span></p>
       </div>
       
@@ -37,6 +41,18 @@
     function add_product(){
       product_name = document.querySelector('#product_name').value
       product_price = document.querySelector('#product_price').value
+
+      //save product on DB
+      fetch("add_product", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          'name': product_name,
+          'price': product_price
+        })
+      })
+      .then( res => res.json())
+      .then( data => console.log(data))
 
       total += parseInt(product_price)
       span_total = document.querySelector('#total')

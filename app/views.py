@@ -322,7 +322,25 @@ def analize_fbp(fbp, gender):
         else:
             return 'good'
 
-
+from app.models import Product
 def shopping_list(request):
-    return render(request, 'app/shopping_list.html')
 
+    products = Product.objects.all()
+
+    return render(request, 'app/shopping_list.html',{
+        'products': products
+    })
+
+@csrf_exempt
+def add_product(request):
+
+    if request.method == 'POST':
+        payload = json.loads(request.body)
+        
+        name = payload['name']
+        price = payload['price']
+
+        product = Product(name=name, price=price)
+        product.save()
+
+        return JsonResponse({'msg':'product added'})

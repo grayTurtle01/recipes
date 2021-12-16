@@ -26,3 +26,7 @@ class DayMenu(models.Model):
 
     def __str__(self):
         return f"{self.title}"
+
+class Product(models.Model):
+    name = models.CharField(max_length=30)
+    price = models.FloatField()

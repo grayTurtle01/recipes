@@ -20,4 +20,5 @@ urlpatterns = [
     path("random_week", views.random_week, name="random_week"),
     path("get_fat", views.get_fat, name="get_fat"),
     path("shopping_list", views.shopping_list, name="shopping_list"),
+    path("add_product", views.add_product, name="add_product"),
 ]
