@@ -19,11 +19,16 @@
         
       </div>
       
-      <div class="card col-lg-3 col-sm-5 text-center m-2 p-3">        
+      <div class="card col-lg-4 col-sm-8 text-center m-2 p-3">        
         <h2>Products</h2>
         <ul id="products" class="text-left">
           {% for product in products %}
-            <li>{{product.name}} {{product.price}}</li>
+            <div class="row">
+              <span class="col-7 card">
+                {{product.name}} 
+              </span>
+              <span class="price col-2 card">{{product.price}}</span>
+            </div>
           {% endfor %}
         </ul>
         <p class="text-right">Total: <span id="total">0</span></p>
@@ -36,7 +41,8 @@
 
 {% block script%}
   <script>
-    let total = 0
+    document.querySelector('#total').innerText = get_total()
+    total = get_total()
 
     function add_product(){
       product_name = document.querySelector('#product_name').value
@@ -52,19 +58,40 @@
         })
       })
       .then( res => res.json())
-      .then( data => console.log(data))
+      .then( data => { console.log(data)
+        append_product(product_name, product_price)
+        document.querySelector('#total').innerText = get_total()
+      })
 
-      total += parseInt(product_price)
-      span_total = document.querySelector('#total')
-      span_total.innerText = total 
-
-      ul = document.querySelector('#products')
-      li = document.createElement('li')
-      li.innerText = product_name + ' ' + product_price
-
-      ul.appendChild(li)
-      
-
+     
     }
+
+    function append_product(product_name, product_price){
+ 
+      ul = document.querySelector('#products')
+      div = document.createElement('div')
+      div.classList.add('row')
+
+      div.innerHTML = `<span class="card col-7">${product_name}</span>  <span class="price card col-2">${product_price}</span>`
+
+      ul.appendChild(div)
+
+      // clean fields
+      document.querySelector('#product_name').value = ''
+      document.querySelector('#product_price').value = ''
+
+      document.querySelector('#product_name').focus()
+    }
+
+    function get_total(){
+      let prices = document.querySelectorAll('.price')
+      total = 0
+      for( price of prices ){
+        total += parseFloat(price.innerText)
+      }
+
+      return total
+    }
+
   </script>
 {% endblock%}
