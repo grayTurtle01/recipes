@@ -4,14 +4,14 @@
 
     <div class="row">
 
-      <div class="card col-lg-3 col-sm-5 m-2 p-3 text-center">
+      <div class="card col-lg-4 col-sm-5 m-2 p-3 text-center">
         
         <h2>Shopping List</h2>
         
         <form  onsubmit="add_product(); return false" class="mt-3">
           <div class="form-group d-flex justify-content-between">
-            <input autofocus class="form-control col-8" type="text" id="product_name" placeholder="Product Name">
-            <input autofocus class="form-control col-3" type="text" id="product_price" placeholder="Price">
+            <input autofocus class="form-control col-8" type="text" id="product_name" placeholder="Product Name" required>
+            <input class="form-control col-3" type="number" min="1" id="product_price" placeholder="Price">
           </div>
           
           <input class="btn btn-primary w-100 mb-5" type="submit" value="Add Product">
