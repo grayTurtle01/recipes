@@ -323,3 +323,6 @@ def analize_fbp(fbp, gender):
             return 'good'
 
 
+def shopping_list(request):
+    return render(request, 'app/shopping_list.html')
+

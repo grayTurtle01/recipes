@@ -1,0 +1,54 @@
+{% extends "app/layout.html" %}
+
+{% block body %}
+
+    <div class="row">
+
+      <div class="card col-lg-3 col-sm-6 m-2 p-3 text-center">
+        
+        <h2>Shopping List</h2>
+        
+        <form  onsubmit="add_product(); return false" class="mt-3">
+          <div class="form-group d-flex justify-content-between">
+            <input autofocus class="form-control col-8" type="text" id="product_name" placeholder="Product Name">
+            <input autofocus class="form-control col-3" type="text" id="product_price" placeholder="Price">
+          </div>
+          
+          <input class="btn btn-primary w-100 mb-5" type="submit" value="Add Product">
+        </form>
+        
+      </div>
+      
+      <div class="card col-lg-3 text-center m-2 p-3">        
+        <h2>Products</h2>
+        <ul id="products" class="text-left"></ul>
+        <p class="text-right">Total: <span id="total">0</span></p>
+      </div>
+      
+    </div>
+
+
+{% endblock %}
+
+{% block script%}
+  <script>
+    let total = 0
+
+    function add_product(){
+      product_name = document.querySelector('#product_name').value
+      product_price = document.querySelector('#product_price').value
+
+      total += parseInt(product_price)
+      span_total = document.querySelector('#total')
+      span_total.innerText = total 
+
+      ul = document.querySelector('#products')
+      li = document.createElement('li')
+      li.innerText = product_name + ' ' + product_price
+
+      ul.appendChild(li)
+      
+
+    }
+  </script>
+{% endblock%}
