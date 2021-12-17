@@ -24,11 +24,19 @@
         <div id="products" class="text-left">
           {% for product in products %}
             <div class="row">
+
+              {% if product.checked == False %}
               <span class="col-6 card">
                 {{product.name}} 
               </span>
+              {% else %}
+              <span class="col-6 card text-muted">
+                {{product.name}} 
+              </span>
+              {% endif %}
               <span class="price col-3 card">{{product.price}}</span>
               <a  href="{% url 'delete_product' product.id %}" class="delete card">Delete</a>
+              <a  href="{% url 'check_uncheck' product.id %}" class="check card">Check</a>
             </div>
           {% endfor %}
           </div>

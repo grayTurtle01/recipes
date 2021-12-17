@@ -350,3 +350,11 @@ def delete_product(request, product_id):
     product.delete()
 
     return redirect('shopping_list')
+
+def check_uncheck(request, product_id):
+    product = Product.objects.get(pk=product_id)
+
+    product.checked = not product.checked
+    product.save()
+
+    return redirect('shopping_list')

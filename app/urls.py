@@ -22,4 +22,5 @@ urlpatterns = [
     path("shopping_list", views.shopping_list, name="shopping_list"),
     path("add_product", views.add_product, name="add_product"),
     path("delete_product/<int:product_id>", views.delete_product, name="delete_product"),
+    path("check_uncheck/<int:product_id>", views.check_uncheck, name="check_uncheck"),
 ]
