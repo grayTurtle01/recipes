@@ -43,12 +43,46 @@
                 <input type="checkbox" class="m-1">
                 {% endif %}
               </a>
+              <a class="card" data-bs-toggle="modal" data-bs-target="#myModal" 
+                              data-id="{{product.id}}"
+                              data-name="{{product.name}}" 
+                              data-price="{{product.price}}" 
+                              onclick="fill_modal(event)">edit</a>
+            
             </div>
           {% endfor %}
           </div>
         <p class="text-right">Total: <span id="total">0</span></p>
       </div>
       
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit Product</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
+          </div>
+          
+          <form onsubmit="update_product(); return false">
+            
+            <div class="modal-body">
+              <input name="new_name" placeholder="Product Name">
+              <input name="new_price" type="number" min=1 placeholder="Price">
+              <input name="product_id" type="hidden">
+            </div>
+            
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Update Product</a>
+            </div>
+
+          </form>
+          
+        </div>
+      </div>
     </div>
 
 
@@ -113,6 +147,38 @@
       }
 
       return total
+    }
+
+    function fill_modal(event) {
+      a = event.target 
+      product_id = a.dataset.id
+      name = a.dataset.name
+      price = a.dataset.price
+
+      document.querySelector('input[name=new_name]').value = name;
+      document.querySelector('input[name=new_price]').value = price
+      document.querySelector('input[name=product_id]').value = product_id
+
+    }
+
+    function update_product(){
+      myModal = document.getElementById('myModal')
+      
+      fetch("/update_product", {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          'product_id': document.querySelector('input[name="product_id"]').value,
+          'new_name': document.querySelector('input[name="new_name"]').value,
+          'new_price': document.querySelector('input[name="new_price"]').value,
+        })
+      })
+      .then( res => res.json())
+      .then( data => console.log(data))
+      // .then( ()=> myModal.hide() )
+      
+
+
     }
 
   </script>

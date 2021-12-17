@@ -359,3 +359,24 @@ def check_uncheck(request, product_id):
     product.save()
 
     return redirect('shopping_list')
+
+@csrf_exempt
+def update_product(request):
+
+    if request.method == 'POST':
+        payload = json.loads(request.body)
+        
+        new_name = payload['new_name']
+        new_price = payload['new_price']
+        product_id = payload['product_id']
+
+        product = Product.objects.get(pk=product_id)
+        product.name = new_name
+        product.price = new_price
+        product.save()
+
+        return JsonResponse({'msg':'product updated',
+                             'product_id': product.id
+                             })
+
+        # return redirect('shopping_list')
