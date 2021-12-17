@@ -30,13 +30,19 @@
                 {{product.name}} 
               </span>
               {% else %}
-              <span class="col-6 card text-muted">
+              <span class="col-6 card text-muted" style="text-decoration: line-through;">
                 {{product.name}} 
               </span>
               {% endif %}
               <span class="price col-3 card">{{product.price}}</span>
-              <a  href="{% url 'delete_product' product.id %}" class="delete card">Delete</a>
-              <a  href="{% url 'check_uncheck' product.id %}" class="check card">Check</a>
+              <a  href="{% url 'delete_product' product.id %}" class="delete card">delete</a>
+              <a  href="{% url 'check_uncheck' product.id %}" class="check card">
+                {% if product.checked %}
+                <input type="checkbox" checked class="m-1">
+                {% else %}
+                <input type="checkbox" class="m-1">
+                {% endif %}
+              </a>
             </div>
           {% endfor %}
           </div>
@@ -68,20 +74,27 @@
       })
       .then( res => res.json())
       .then( data => { console.log(data)
-        append_product(product_name, product_price)
+        product_id = data.product_id
+        append_product(product_name, product_price, product_id)
         document.querySelector('#total').innerText = get_total()
       })
 
      
     }
 
-    function append_product(product_name, product_price){
+    function append_product(product_name, product_price, product_id){
  
       ul = document.querySelector('#products')
       div = document.createElement('div')
       div.classList.add('row')
 
-      div.innerHTML = `<span class="card col-7">${product_name}</span>  <span class="price card col-2">${product_price}</span>`
+      div.innerHTML = `<span class="card col-6">${product_name}</span> 
+                       <span class="price card col-3">${product_price}</span>
+                       <a  href="/delete_product/${product_id}" class="delete card">delete</a>
+                       <a  href="/check_uncheck/${product_id}" class="check card">
+                        <input type="checkbox" class="m-1"> 
+                       </a>
+                       `
 
       ul.appendChild(div)
 

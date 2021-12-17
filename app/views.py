@@ -343,7 +343,8 @@ def add_product(request):
         product = Product(name=name, price=price)
         product.save()
 
-        return JsonResponse({'msg':'product added'})
+        return JsonResponse({'msg':'product added',
+                             'product_id': product.id})
 
 def delete_product(request, product_id):
     product = Product.objects.get(pk=product_id)
