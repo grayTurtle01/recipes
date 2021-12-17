@@ -21,4 +21,5 @@ urlpatterns = [
     path("get_fat", views.get_fat, name="get_fat"),
     path("shopping_list", views.shopping_list, name="shopping_list"),
     path("add_product", views.add_product, name="add_product"),
+    path("delete_product/<int:product_id>", views.delete_product, name="delete_product"),
 ]
