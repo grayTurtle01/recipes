@@ -76,7 +76,7 @@
             
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Update Product</a>
+              <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Update Product</a>
             </div>
 
           </form>
@@ -175,7 +175,10 @@
       })
       .then( res => res.json())
       .then( data => console.log(data))
-      // .then( ()=> myModal.hide() )
+      .then( ()=> {
+        url = document.location
+        url.reload()
+      } )
       
 
 

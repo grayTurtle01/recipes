@@ -379,4 +379,3 @@ def update_product(request):
                              'product_id': product.id
                              })
 
-        # return redirect('shopping_list')
