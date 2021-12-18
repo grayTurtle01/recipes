@@ -2,7 +2,8 @@
 
 {% block body %}
 
-    <div class="row">
+  <div class="container">
+    <div class="row justify-content-center">
 
       <div class="card col-lg-4 col-sm-5 m-2 p-3 text-center">
         
@@ -19,7 +20,7 @@
         
       </div>
       
-      <div class="card col-lg-4 col-sm-7 text-center m-2 p-3">        
+      <div class="card col-lg-5 col-sm-7 text-center m-2 p-3">        
         <h2>Products</h2>
         <div id="products" class="text-left">
           {% for product in products %}
@@ -35,7 +36,11 @@
               </span>
               {% endif %}
               <span class="price col-3 card">{{product.price}}</span>
-              <a  href="{% url 'delete_product' product.id %}" class="delete card">delete</a>
+
+              <a  href="{% url 'delete_product' product.id %}" class="delete card">
+                <i class='fa fa-trash text-dark m-1'></i>
+              </a>
+
               <a  href="{% url 'check_uncheck' product.id %}" class="check card">
                 {% if product.checked %}
                 <input type="checkbox" checked class="m-1">
@@ -43,11 +48,12 @@
                 <input type="checkbox" class="m-1">
                 {% endif %}
               </a>
-              <a class="card" data-bs-toggle="modal" data-bs-target="#myModal" 
+
+              <i class="card fa fa-edit p-1" data-bs-toggle="modal" data-bs-target="#myModal" 
                               data-id="{{product.id}}"
                               data-name="{{product.name}}" 
                               data-price="{{product.price}}" 
-                              onclick="fill_modal(event)">edit</a>
+                              onclick="fill_modal(event)"></i>
             
             </div>
           {% endfor %}
@@ -56,8 +62,9 @@
       </div>
       
     </div>
+  </div>
 
-    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           
@@ -83,7 +90,7 @@
           
         </div>
       </div>
-    </div>
+  </div>
 
 
 {% endblock %}
@@ -124,10 +131,17 @@
 
       div.innerHTML = `<span class="card col-6">${product_name}</span> 
                        <span class="price card col-3">${product_price}</span>
-                       <a  href="/delete_product/${product_id}" class="delete card">delete</a>
+                       <a  href="/delete_product/${product_id}" class="delete card">
+                        <i class="fa fa-trash m-1 text-dark"></i>
+                      </a>
                        <a  href="/check_uncheck/${product_id}" class="check card">
                         <input type="checkbox" class="m-1"> 
                        </a>
+                       <i class="card fa fa-edit p-1" data-bs-toggle="modal" data-bs-target="#myModal" 
+                              data-id="${product_id}"
+                              data-name="${product_name}" 
+                              data-price="${product_price}" 
+                              onclick="fill_modal(event)"></i>
                        `
 
       ul.appendChild(div)
@@ -151,12 +165,13 @@
 
     function fill_modal(event) {
       a = event.target 
-      product_id = a.dataset.id
-      name = a.dataset.name
-      price = a.dataset.price
 
-      document.querySelector('input[name=new_name]').value = name;
-      document.querySelector('input[name=new_price]').value = price
+      product_id = a.dataset.id
+      product_name = a.dataset.name
+      product_price = a.dataset.price
+
+      document.querySelector('input[name=new_name]').value = product_name;
+      document.querySelector('input[name=new_price]').value = product_price
       document.querySelector('input[name=product_id]').value = product_id
 
     }
@@ -180,8 +195,6 @@
         url.reload()
       } )
       
-
-
     }
 
   </script>
