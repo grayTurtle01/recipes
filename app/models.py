@@ -29,7 +29,7 @@ class DayMenu(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=30)
-    price = models.FloatField()
+    price = models.IntegerField()
     checked = models.BooleanField(default=False)
 
     def __str__(self):

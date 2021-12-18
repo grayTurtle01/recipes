@@ -5,7 +5,7 @@
   <div class="container">
     <div class="row justify-content-center">
 
-      <div class="card col-lg-4 col-sm-5 m-2 p-3 text-center">
+      <div class="card col-lg-4 col-sm-8 m-2 p-3 text-center">
         
         <h2>Shopping List</h2>
         
@@ -35,30 +35,33 @@
                 {{product.name}} 
               </span>
               {% endif %}
-              <span class="price col-3 card">{{product.price}}</span>
+              <span class="price col-lg-2 col-sm-3 card">{{product.price}}</span>
 
-              <a  href="{% url 'delete_product' product.id %}" class="delete card">
-                <i class='fa fa-trash text-dark m-1'></i>
-              </a>
-
-              <a  href="{% url 'check_uncheck' product.id %}" class="check card">
-                {% if product.checked %}
-                <input type="checkbox" checked class="m-1">
-                {% else %}
-                <input type="checkbox" class="m-1">
-                {% endif %}
-              </a>
 
               <i class="card fa fa-edit p-1" data-bs-toggle="modal" data-bs-target="#myModal" 
                               data-id="{{product.id}}"
                               data-name="{{product.name}}" 
                               data-price="{{product.price}}" 
-                              onclick="fill_modal(event)"></i>
+                              onclick="fill_modal(event)" title="edit product"></i>
+
+
+              <a  href="{% url 'delete_product' product.id %}" class="delete card">
+                <i class='fa fa-trash text-dark m-1' title="delete product"></i>
+              </a>
+
+              <a  href="{% url 'check_uncheck' product.id %}" class="check card">
+                {% if product.checked %}
+                <input type="checkbox" checked class="m-1" title="uncheck product">
+                {% else %}
+                <input type="checkbox" class="m-1" title="check product">
+                {% endif %}
+              </a>
+
             
             </div>
           {% endfor %}
           </div>
-        <p class="text-right">Total: <span id="total">0</span></p>
+        <p class="text-right mt-4"><b>Total:</b> <span id="total">0</span></p>
       </div>
       
     </div>
@@ -100,6 +103,14 @@
     document.querySelector('#total').innerText = get_total()
     total = get_total()
 
+    // focus modal
+    myModal = document.querySelector("#myModal")
+    myInput = document.querySelector("input[name=new_name]")
+
+    myModal.addEventListener('shown.bs.modal', function(){
+      myInput.focus()  
+   })
+
     function add_product(){
       product_name = document.querySelector('#product_name').value
       product_price = document.querySelector('#product_price').value
@@ -130,18 +141,19 @@
       div.classList.add('row')
 
       div.innerHTML = `<span class="card col-6">${product_name}</span> 
-                       <span class="price card col-3">${product_price}</span>
+                       <span class="price card col-lg-2 col-sm-3">${product_price}</span>
+                       <i class="card fa fa-edit p-1" data-bs-toggle="modal" data-bs-target="#myModal" 
+                              data-id="${product_id}"
+                              data-name="${product_name}" 
+                              data-price="${product_price}" 
+                              onclick="fill_modal(event)"></i>
                        <a  href="/delete_product/${product_id}" class="delete card">
                         <i class="fa fa-trash m-1 text-dark"></i>
                       </a>
                        <a  href="/check_uncheck/${product_id}" class="check card">
                         <input type="checkbox" class="m-1"> 
                        </a>
-                       <i class="card fa fa-edit p-1" data-bs-toggle="modal" data-bs-target="#myModal" 
-                              data-id="${product_id}"
-                              data-name="${product_name}" 
-                              data-price="${product_price}" 
-                              onclick="fill_modal(event)"></i>
+                       
                        `
 
       ul.appendChild(div)
