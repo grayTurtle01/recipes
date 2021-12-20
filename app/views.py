@@ -431,3 +431,11 @@ def zone_create_menu(request):
         menu.save()
 
         return redirect('zone_create_menu')
+
+def zone_menus(request):
+    if request.method == 'GET':
+        menus = ZoneMenu.objects.all()
+
+        return render(request, 'app/zone_menus.html', {
+            'menus': menus
+        })
