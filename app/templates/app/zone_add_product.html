@@ -1,30 +1,113 @@
 {% extends 'app/layout.html' %}
 
 {% block body %}
-  <h3>Add Product</h3>
+  <div class="container">
 
-  <form action="zone_add_product" method='post'>
-    {% csrf_token %}
-    <input type='text'   name="name" placeholder="Product Name" autofocus>
-    <input type="number" name="price">
+  
+  <div class="card col-lg-4 col-sm-8 mx-auto">
 
-    <select>
-      <option selected disabled>Categorie</option>
-      <option>Protein</option>
-      <option>Carbs</option>
-      <option>Fat</option>
-    </select>
+    <h3>Add Product</h3>
+    
+    <form action="zone_add_product" method='post'>
+      {% csrf_token %}
+      <input class="col-8 p-0" type='text'   name="name" placeholder="Product Name" autofocus required>
+      <input class="col-3 p-0" type="number" name="price" placeholder="Price" required>
+      
+      <select name="category" required>
+        <option selected disabled>Category</option>
+        <option>Protein</option>
+        <option>Carbs</option>
+        <option>Fat</option>
+      </select>
+      
+      <select name="blocks" required>
+        <option selected disabled>Blocks</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+      </select>
+      
+      <input type="submit" value="Add">
+      
+    </form>
+  </div>
 
-    <select>
-      <option selected disabled>Blocks</option>
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-    </select>
+  <div class="row">
 
-    <input type="submit" value="Add Product">
+    <div class="card col-lg-4 col-sm-10 mx-auto">
+      <h3>Protein</h3>
+      <div class="row">
+        <div class="col-8"><b>Name</b></div>
+        <div class="col-3"><b>Price</b></div>
+        <div class="col-1"><b>B</b></div>
+      </div>
+      {% for product in products %}
+        {% if product.category == 'Protein' %}
+          <div class="row">
+            <div class="col-8">
+              {{product.name}}
+            </div>
+            <div class="col-3">
+              ${{product.price}}
+            </div>
+            <div class="col-1">
+              {{product.blocks}}
+            </div>
+          </div> 
+        {% endif %}    
+      {% endfor %}
+    </div>
+    
+    <div class="card col-lg-4 col-sm-10 mx-auto">
+      <h3>Carbs</h3>
+      <div class="row">
+        <div class="col-8"><b>Name</b></div>
+        <div class="col-3"><b>Price</b></div>
+        <div class="col-1"><b>B</b></div>
+      </div>
+      {% for product in products %}
+        {% if product.category == 'Carbs' %}
+          <div class="row">
+            <div class="col-8">
+              {{product.name}}
+            </div>
+            <div class="col-3">
+              ${{product.price}}
+            </div>
+            <div class="col-1">
+              {{product.blocks}}
+            </div>
+          </div> 
+        {% endif %}
+      {% endfor %}
+    </div>
+    
+    <div class="card col-lg-4 col-sm-10 mx-auto">
+      <h3>Fat</h3>
+      <div class="row">
+        <div class="col-8"><b>Name</b></div>
+        <div class="col-3"><b>Price</b></div>
+        <div class="col-1"><b>B</b></div>
+      </div>
+      {% for product in products %}
+        {% if product.category == 'Fat' %}
+          <div class="row">
+            <div class="col-8">
+              {{product.name}}
+            </div>
+            <div class="col-3">
+              ${{product.price}}
+            </div>
+            <div class="col-1">
+              {{product.blocks}}
+            </div>
+          </div> 
+        {% endif %}
+      {% endfor %}
+    </div>
 
-  </form>
+  </div>
 
+</div>
 {% endblock %}

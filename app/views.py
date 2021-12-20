@@ -380,13 +380,28 @@ def update_product(request):
                              })
 
 ### ZONE ###
+from .models import ZoneProduct
 def zone_add_product(request):
+
     if request.method == 'GET':
-        return render(request, 'app/zone_add_product.html')
+        products = ZoneProduct.objects.all()
+        return render(request, 'app/zone_add_product.html', {
+            'products': products
+        })
 
     if request.method == 'POST':
-        #payload = request.POST
-        name = request.POST['name']    
+            
+        product = ZoneProduct(name  = request.POST['name'],
+                              price = int(request.POST['price']),
+                              category = request.POST['category'],
+                              blocks = int(request.POST['blocks']) )
+        product.save()
 
-        # return JsonResponse()
-        return HttpResponse(name)
+        #return JsonResponse(request.POST)
+        return redirect('zone_add_product')
+
+def zone_create_menu(request):
+    
+    if request.method == 'GET':
+
+        return render(request, 'app/zone_create_menu.html') 
