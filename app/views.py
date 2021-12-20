@@ -379,3 +379,14 @@ def update_product(request):
                              'product_id': product.id
                              })
 
+### ZONE ###
+def zone_add_product(request):
+    if request.method == 'GET':
+        return render(request, 'app/zone_add_product.html')
+
+    if request.method == 'POST':
+        #payload = request.POST
+        name = request.POST['name']    
+
+        # return JsonResponse()
+        return HttpResponse(name)

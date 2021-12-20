@@ -1,0 +1,30 @@
+{% extends 'app/layout.html' %}
+
+{% block body %}
+  <h3>Add Product</h3>
+
+  <form action="zone_add_product" method='post'>
+    {% csrf_token %}
+    <input type='text'   name="name" placeholder="Product Name" autofocus>
+    <input type="number" name="price">
+
+    <select>
+      <option selected disabled>Categorie</option>
+      <option>Protein</option>
+      <option>Carbs</option>
+      <option>Fat</option>
+    </select>
+
+    <select>
+      <option selected disabled>Blocks</option>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+    </select>
+
+    <input type="submit" value="Add Product">
+
+  </form>
+
+{% endblock %}
