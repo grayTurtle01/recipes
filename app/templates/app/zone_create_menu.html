@@ -1,2 +1,33 @@
 {% extends 'app/layout.html' %}
 
+{% block body %}
+  <h3>Create Menu</h3>
+  <form action="zone_create_menu" method="POST" >
+    {% csrf_token %}
+    
+    <input type="text" placeholder="Menu Name">
+
+    <select name="protein">
+      <option selected disabled>Protein</option>
+      {% for protein in proteins %}
+        <option>{{protein.name}}</option>
+      {% endfor %}
+    </select>
+
+    <select name="carb">
+      <option selected disabled>Carb</option>
+      {% for carb in carbs %}
+        <option>{{carb.name}}</option>
+      {% endfor %}
+    </select>
+
+    <select name="fat">
+      <option selected disabled>Fat</option>
+      {% for fat in fats %}
+        <option>{{fat.name}}</option>
+      {% endfor %}
+    </select>
+
+
+  </form>
+{% endblock %}

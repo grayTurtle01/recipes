@@ -404,4 +404,14 @@ def zone_create_menu(request):
     
     if request.method == 'GET':
 
-        return render(request, 'app/zone_create_menu.html') 
+        proteins = ZoneProduct.objects.filter(category__contains="protein")
+        carbs = ZoneProduct.objects.filter(category__contains="carb")
+        fats = ZoneProduct.objects.filter(category__contains="fat")
+
+        return render(request, 'app/zone_create_menu.html',{
+            'proteins': proteins,
+            'carbs': carbs,
+            'fats': fats
+        })
+
+     
