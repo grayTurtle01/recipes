@@ -35,7 +35,11 @@ class Product(models.Model):
     def __str__(self):
         return f"{self.name} | {self.price} "
 
+
+
+
 class ZoneProduct(models.Model):
+   
     name = models.CharField(max_length=30)
     price = models.IntegerField()
     category = models.CharField(max_length=20)
@@ -43,3 +47,19 @@ class ZoneProduct(models.Model):
 
     def __str__(self):
         return f"{self.name} | {self.price} | {self.category}"
+
+class ZoneMenu(models.Model):
+    name = models.CharField(max_length=30)
+    price = models.IntegerField(default=0)
+    ratio = models.FloatField(default=0)
+   
+    def __str__(self):
+        return f"{self.name}"
+
+
+class Item(models.Model):
+    menu = models.ForeignKey(ZoneMenu, on_delete=models.CASCADE)
+    product = models.ForeignKey(ZoneProduct, on_delete=models.CASCADE )
+
+    def __str__(self):
+        return f"{self.product.name}"

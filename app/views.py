@@ -5,7 +5,7 @@ from django.http.response import JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
-from .models import User
+from .models import User, ZoneMenu
 
 
 def index(request):
@@ -408,10 +408,26 @@ def zone_create_menu(request):
         carbs = ZoneProduct.objects.filter(category__contains="carb")
         fats = ZoneProduct.objects.filter(category__contains="fat")
 
+        menus = ZoneMenu.objects.all()
+
         return render(request, 'app/zone_create_menu.html',{
             'proteins': proteins,
             'carbs': carbs,
-            'fats': fats
+            'fats': fats,
+            'menus': menus
         })
 
-     
+    if request.method == 'POST':
+        menu = ZoneMenu(name=request.POST['menu_name'])
+        menu.save()
+
+        protein = ZoneProduct.objects.get(pk=int(request.POST['protein_id']))
+        carb = ZoneProduct.objects.get(pk=int(request.POST['carb_id']))
+        fat = ZoneProduct.objects.get(pk=int(request.POST['fat_id']))
+        menu.item_set.create(product=protein)
+        menu.item_set.create(product=carb)
+        menu.item_set.create(product=fat)
+
+        menu.save()
+
+        return redirect('zone_create_menu')
