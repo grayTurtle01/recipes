@@ -27,4 +27,5 @@ urlpatterns = [
     path("zone_add_product", views.zone_add_product, name="zone_add_product"),
     path("zone_create_menu", views.zone_create_menu, name="zone_create_menu"),
     path("zone_menus", views.zone_menus, name="zone_menus"),
+    path("zone_menu/<int:menu_id>", views.zone_menu, name="zone_menu"),
 ]

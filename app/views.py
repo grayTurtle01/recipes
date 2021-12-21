@@ -439,3 +439,10 @@ def zone_menus(request):
         return render(request, 'app/zone_menus.html', {
             'menus': menus
         })
+
+def zone_menu(request, menu_id):
+    menu = ZoneMenu.objects.get(pk=int(menu_id))
+
+    return render(request, 'app/zone_menu.html',{
+        'menu': menu
+    })
