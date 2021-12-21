@@ -7,8 +7,8 @@
     <div class="row">
 
 
-      <div class="card col-4 mx-auto">
-        <h2 class="text-center">{{menu.name}}</h2>
+      <div class="card col-lg-5 col-sm-12 mx-auto">
+        <h3 class="text-center">{{menu.name}}</h3>
 
         <h5 class="mt-3">Proteins</h5>
           {% for item in menu.item_set.all %}
@@ -19,11 +19,11 @@
                   {{item.product.name}}
                 </div>
 
-                <div class="col-3">
+                <div class="col-2">
                   ${{item.product.price}}
                 </div>
 
-                <div class="col-1">
+                <div class="col-2">
                   {{item.product.blocks}}
                 </div>
               </div>
@@ -39,11 +39,11 @@
                 {{item.product.name}}
               </div>
 
-              <div class="col-3">
+              <div class="col-2">
                 ${{item.product.price}}
               </div>
 
-              <div class="col-1">
+              <div class="col-2">
                 {{item.product.blocks}}
               </div>
             </div>
@@ -59,17 +59,33 @@
                 {{item.product.name}}
               </div>
 
-              <div class="col-3">
+              <div class="col-2">
                 ${{item.product.price}}
               </div>
 
-              <div class="col-1">
+              <div class="col-2">
                 {{item.product.blocks}}
               </div>
             </div>
             {% endif %}
-         
           {% endfor %}
+
+          <h5 class="mt-4"></h5>
+          <div class="row">
+                  
+            <div class="col-8">
+              Results
+            </div>
+  
+            <div class="col-2">
+              ${{menu.price}}
+            </div>
+  
+            <div class="col-2">
+              {{menu.ratio}}
+            </div>
+          </div>
+  
       {% endblock %}
       </div>
     </div>
