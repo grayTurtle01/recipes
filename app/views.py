@@ -452,7 +452,7 @@ def zone_menu(request, menu_id):
 
 def zone_create_day(request):
     if request.method == 'GET':
-        meals = ZoneMenu.objects.all()
+        meals = ZoneMenu.objects.exclude(tags__contains="snack")
         snacks = ZoneMenu.objects.filter(tags__contains="snack")
 
         return render(request, 'app/zone_create_day.html',{
