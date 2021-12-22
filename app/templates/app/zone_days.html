@@ -1,0 +1,50 @@
+{% extends 'app/layout.html' %}
+
+{% block body %}
+  <div class="container">
+    <h4 class='text-center'>Zone Days</h4>
+    <div class="row justify-content-center m-2">
+      <div class="badge badge-warning">BreakFast</div>
+      <div class="badge badge-success">Meal</div>
+      <div class="badge badge-dark">Dinner</div>
+      <div class="badge badge-info">Snack</div>
+    </div>
+
+    <div class="row">
+
+      {% for day in days %}
+      <div class="card col-lg-3 col-sm-6 p-0">
+
+        <a href="zone_menu/{{menu.id}}">
+          <h5 class="text-center">{{day.name}}</h5>
+        </a>
+
+        <div class="badge badge-warning col-8 mb-1 mx-auto">
+          {{day.breakfast.name}}
+        </div>
+
+        <div class="badge badge-info col-7 mb-1 mx-auto">
+          {{day.snackI.name}}
+        </div>
+
+        <div class="badge badge-success col-8 mb-1 mx-auto">
+          {{day.meal.name}}
+        </div>
+
+        <div class="badge badge-info col-7 mb-1 mx-auto">
+          {{day.snackII.name}}
+        </div>
+
+        <div class="badge badge-dark col-8 mb-1 mx-auto">
+          {{day.dinner.name}}
+        </div>
+
+
+        
+
+
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endblock %}

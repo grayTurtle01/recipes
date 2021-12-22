@@ -480,3 +480,10 @@ def zone_create_day(request):
         day.save()
 
         return JsonResponse(request.POST)
+
+def zone_days(request):
+    days = ZoneDay.objects.all()
+
+    return render(request, 'app/zone_days.html',{
+        'days': days
+    })
