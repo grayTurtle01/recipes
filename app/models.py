@@ -52,6 +52,7 @@ class ZoneMenu(models.Model):
     name = models.CharField(max_length=30)
     price = models.IntegerField(default=0)
     ratio = models.FloatField(default=0)
+    tags = models.CharField(max_length=50, default="meal")
    
     def __str__(self):
         return f"{self.name}"
@@ -63,3 +64,16 @@ class Item(models.Model):
 
     def __str__(self):
         return f"{self.product.name}"
+
+
+class ZoneDay(models.Model):
+    name = models.CharField(max_length=30)
+
+    breakfast = models.ForeignKey(ZoneMenu, on_delete=models.CASCADE, related_name='breakfasts')
+    snackI = models.ForeignKey(ZoneMenu, on_delete=models.CASCADE, related_name='snacksI')
+    meal = models.ForeignKey(ZoneMenu, on_delete=models.CASCADE, related_name='meals')
+    snackII = models.ForeignKey(ZoneMenu, on_delete=models.CASCADE, related_name='snacksII')
+    dinner = models.ForeignKey(ZoneMenu, on_delete=models.CASCADE, related_name='dinners')
+
+    def __str__(self):
+        return f"{self.name}"

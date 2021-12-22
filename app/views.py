@@ -5,7 +5,7 @@ from django.http.response import JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
-from .models import User, ZoneMenu
+from .models import User, ZoneDay, ZoneMenu
 
 
 def index(request):
@@ -428,9 +428,12 @@ def zone_create_menu(request):
         menu.item_set.create(product=carb)
         menu.item_set.create(product=fat)
 
+        menu.price = protein.price + carb.price + fat.price
+        menu.ratio = protein.blocks / carb.blocks
+
         menu.save()
 
-        return redirect('zone_create_menu')
+        return redirect('zone_menus')
 
 def zone_menus(request):
     if request.method == 'GET':
@@ -446,3 +449,34 @@ def zone_menu(request, menu_id):
     return render(request, 'app/zone_menu.html',{
         'menu': menu
     })
+
+def zone_create_day(request):
+    if request.method == 'GET':
+        meals = ZoneMenu.objects.all()
+        snacks = ZoneMenu.objects.filter(tags__contains="snack")
+
+        return render(request, 'app/zone_create_day.html',{
+            'meals': meals,
+            'snacks': snacks
+        })
+
+    if request.method == 'POST':
+
+        breakfast = ZoneMenu.objects.get(pk=int(request.POST['breakfast_id']))
+        snackI = ZoneMenu.objects.get(pk=int(request.POST['snackI_id']))
+        meal = ZoneMenu.objects.get(pk=int(request.POST['meal_id']))
+        snackII = ZoneMenu.objects.get(pk=int(request.POST['snackII_id']))
+        dinner = ZoneMenu.objects.get(pk=int(request.POST['dinner_id']))
+
+
+        day = ZoneDay(name = request.POST['day_name'],
+                      breakfast = breakfast,
+                      snackI = snackI,
+                      meal = meal,
+                      snackII = snackII,
+                      dinner = dinner
+                      )
+
+        day.save()
+
+        return JsonResponse(request.POST)

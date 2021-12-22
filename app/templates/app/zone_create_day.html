@@ -1,0 +1,71 @@
+{% extends 'app/layout.html' %}
+
+{% block body %}
+  <div class="container">
+
+    <div class="card mx-auto p-5 col-lg-4 col-sm-8 my-5">
+
+    
+      <h3 class='text-center mb-5'>Create Zone Day</h3>
+      <form action="zone_create_day" method="POST" >
+        {% csrf_token %}
+        
+        <div class="form-group">
+          <input  class="form-control" type="text" placeholder="Day Name" name="day_name" required>
+        </div>
+        
+        <div class="form-group">
+          <select name="breakfast_id" class='form-control' required>
+            <option selected disabled>Breakfast</option>
+            {% for meal in meals %}
+            <option value="{{meal.id}}">{{meal.name}}</option>
+            {% endfor %}
+          </select>
+      </div>
+        
+      <div class="form-group">
+          <select name="snackI_id" class='form-control' required>
+            <option selected disabled>Snack I</option>
+            {% for snack in snacks %}
+              <option value="{{snack.id}}">{{snack.name}}</option>
+            {% endfor %}
+          </select>
+      </div>
+
+      <div class="form-group">
+        <select name="meal_id" class='form-control' required>
+          <option selected disabled>Meal</option>
+          {% for meal in meals %}
+            <option value="{{meal.id}}">{{meal.name}}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+
+      <div class="form-group">
+        <select name="snackII_id" class='form-control' required>
+          <option selected disabled>Snack II</option>
+          {% for snack in snacks %}
+            <option value="{{snack.id}}">{{snack.name}}</option>
+          {% endfor %}
+        </select>
+    </div>
+
+
+    <div class="form-group">
+      <select name="dinner_id" class='form-control' required>
+        <option selected disabled>Dinner</option>
+        {% for meal in meals %}
+          <option value="{{meal.id}}">{{meal.name}}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+      <input type="submit" value="Save Zone Day" class="btn btn-primary w-100">
+
+      </form>
+
+    </div>
+    
+  </div>
+{% endblock %}
