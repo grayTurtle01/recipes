@@ -31,6 +31,7 @@ class Product(models.Model):
     name = models.CharField(max_length=30)
     price = models.IntegerField()
     checked = models.BooleanField(default=False)
+    category = models.CharField(max_length=20, default="protein")
 
     def __str__(self):
         return f"{self.name} | {self.price} "

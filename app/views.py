@@ -326,9 +326,11 @@ from app.models import Product
 def shopping_list(request):
 
     products = Product.objects.all()
+    proteins = products.filter(category__contains="protein")
 
     return render(request, 'app/shopping_list.html',{
-        'products': products
+        'products': products,
+        'proteins': proteins
     })
 
 @csrf_exempt
@@ -384,7 +386,7 @@ from .models import ZoneProduct
 def zone_add_product(request):
 
     if request.method == 'GET':
-        products = ZoneProduct.objects.all()
+        products = ZoneProduct.objects.all().order_by('blocks')
         return render(request, 'app/zone_add_product.html', {
             'products': products
         })
