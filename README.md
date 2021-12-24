@@ -34,6 +34,7 @@ You can create a menu. The menu is composed
 by  three recipes. one from breakfast, another 
 for the meal and another for the dinner.
 
+![menus](https://res.cloudinary.com/dqxtoises/image/upload/v1640382414/menus_kmskjv.png)
 
 ## Random
 You can get a random recipe.
