@@ -28,11 +28,11 @@
             <div class="row">
 
               {% if product.checked == False %}
-              <span class="col-lg-6 col-sm-5 card">
+              <span class="col-lg-6 col-sm-5 col-xs-5 card">
                 {{product.name}} 
               </span>
               {% else %}
-              <span class="col-6 card text-muted" style="text-decoration: line-through;">
+              <span class="col-6  col-sm-5 col-xs-5 card text-muted" style="text-decoration: line-through;">
                 {{product.name}} 
               </span>
               {% endif %}
