@@ -13,6 +13,8 @@ This a a Web-App for recipes and health.
 - [x] requirements.txt
 
 ## Recipes
+![all recipes](https://res.cloudinary.com/dqxtoises/image/upload/v1640382187/recipes_jnxvnq.png)
+
 You can see all the recipes added in the main page.
 
 Recipe Inputs
