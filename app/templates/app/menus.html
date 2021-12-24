@@ -2,7 +2,21 @@
 {% load my_filters %}
 
 {% block body %}
-  <button id="toggle_menus" class="btn  btn-sm btn-info">Show Images</button>
+  <h3 class="text-center">Menus</h3>
+
+  <div>
+
+    <div class="row justify-content-center">
+      <div class="badge badge-warning">BreakFast</div>
+      <div class="badge badge-success">Meal</div>
+      <div class="badge badge-dark">Dinner</div>
+    </div>
+      
+    <div class='row justify-content-center m-2'>
+      <button id="toggle_menus" class="btn  btn-sm btn-info">Show Images</button>
+    </div>
+    
+  </div>
   {% include 'app/render_menus.html' %}
 {% endblock %}
 

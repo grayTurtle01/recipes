@@ -70,19 +70,16 @@
               <ul class="navbar-nav">
                         
                     {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'profile' user.id %}">
-                            <strong>{{ user.username }}</strong
-                        ></a>
-                    </li>
+                    <div class="dropdown ">
+                        <button class="btn dropdown-toggle" data-bs-toggle='dropdown'>{{user.username}}</button>
+                        <div class="dropdown-menu">
+                            <a class="nav-link" href="{% url 'profile' user.id %}">My Recipes</a>
+                            <a class="nav-link" href="{% url 'add_recipe' %}"> Add Recipe</a>
+                            <a class="nav-link" href="{% url 'add_menu' %}"> Add Menu</a>
+                            
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'add_recipe' %}"> Add Recipe</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'add_menu' %}"> Add Menu</a>
-                    </li>
+                        </div>
+                    </div>
 
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'logout' %}">Log Out</a>

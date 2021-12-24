@@ -2,6 +2,8 @@
 {% load my_filters %}
 
 {% block body %}
-  <h3>Random Day Menu</h3>
-  {% include 'app/render_recipes.html' %}
+  <h3 class='text-center'>Random Day Menu</h3>
+  <div class="container">
+    {% include 'app/render_recipes.html' %}
+  </div>
 {% endblock %}
