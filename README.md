@@ -41,6 +41,7 @@ You can get a random recipe.
 You can get a random day menu.
 You can get a random week days.
 
+![random day menus](https://res.cloudinary.com/dqxtoises/image/upload/v1640382656/random_day_giw8cx.png)
 
 ## Body Fat Percentage
 This page calculate:
