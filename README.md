@@ -17,7 +17,7 @@ You can see all the recipes added in the main page.
 
 Recipe Inputs
 - Title
-- Ingridients
+- Ingredients
 - Description
 - Tags
 
