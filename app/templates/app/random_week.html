@@ -2,7 +2,9 @@
 {% load my_filters %}
 
 {% block body %}
-  <button id="toggle_menus" class="btn  btn-sm btn-info">Show Images</button>
+  <div class="row justify-content-center m-2">
+    <button id="toggle_menus" class="btn  btn-sm btn-info">Show Images</button>
+  </div>
   {% include 'app/render_menus.html' %}
 {% endblock %}
 
@@ -28,5 +30,11 @@
        }) 
 
     }
+
+    // hide the edit button for random week
+    document.querySelectorAll('.edit-menu').forEach( btn => {
+      btn.style.display = 'none'
+    })
+
   </script>
 {% endblock %}
