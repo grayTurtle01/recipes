@@ -67,6 +67,8 @@ The product can be:
 The list calculates the total price of all
 articles
 
+![shopping list](https://res.cloudinary.com/dqxtoises/image/upload/v1640383070/shopping_list_ywdcaf.png)
+
 # Zone
 This part of the app is for create menus with
 the structure of the zone diet.
