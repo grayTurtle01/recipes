@@ -33,6 +33,7 @@ The recipes can be filterd by author and tags.
 You can create a menu. The menu is composed
 by  three recipes. one from breakfast, another 
 for the meal and another for the dinner.
+The author of the day-menu can edit that menu.
 
 ![menus](https://res.cloudinary.com/dqxtoises/image/upload/v1640382414/menus_kmskjv.png)
 
