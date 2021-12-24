@@ -54,6 +54,9 @@ Inputs:
   - Age (years)
   - Gender 
 
+Also the app tell you if your Body Mass Index and Body Fat Percentage is between the 
+healthy parameters.
+
 ## Shopping List
 In this page you can add products on a list.
 The product can be:
