@@ -1,7 +1,20 @@
 # Description
 This a a Web-App for recipes and health.
 
+## Requirements
+[x] The application is sufficiently distict the other projects
+[x] The projects isn't a social network
+[x] The projects isn't a e-commerce
+[x] The application use Django from back-end
+[x] The app use javascript from front-end
+[x] The web app is mobile-responsive
+[x] Distinctiveness and Complexity
+[x] How to run the application
+[x] requirements.txt
+
 ## Recipes
+You can see all the recipes added in the main page.
+
 Recipe Inputs
 - Title
 - Ingridients
@@ -16,7 +29,8 @@ The recipes can be filterd by author and tags.
 
 ## Day Menus
 You can create a menu. The menu is composed
-by  three recipes.
+by  three recipes. one from breakfast, another 
+for the meal and another for the dinner.
 
 
 ## Random
@@ -97,6 +111,8 @@ has is own color:
   - This isn't the pizza App
   - This platform is designed to help people to eat better
   - This app can save delicious recipes
+  - This application use 7 models
+  - Some models use ForeignKeys
 
 # How to Run Application
 
