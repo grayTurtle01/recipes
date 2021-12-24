@@ -2,15 +2,15 @@
 This a a Web-App for recipes and health.
 
 ## Requirements
-[x] The application is sufficiently distict the other projects
-[x] The projects isn't a social network
-[x] The projects isn't a e-commerce
-[x] The application use Django from back-end
-[x] The app use javascript from front-end
-[x] The web app is mobile-responsive
-[x] Distinctiveness and Complexity
-[x] How to run the application
-[x] requirements.txt
+- [x] The application is sufficiently distict the other projects
+- [x] The projects isn't a social network
+- [x] The projects isn't a e-commerce
+- [x] The application use Django from back-end
+- [x] The app use javascript from front-end
+- [x] The web app is mobile-responsive
+- [x] Distinctiveness and Complexity
+- [x] How to run the application
+- [x] requirements.txt
 
 ## Recipes
 You can see all the recipes added in the main page.
