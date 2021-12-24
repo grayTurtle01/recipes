@@ -116,9 +116,11 @@ has is own color:
 
 # How to Run Application
 
-`clone url-repo`
+`clone https://github.com/grayTurtle01/recipes.git`
 
 `cd project `
+
+`pip3 install -r requirements.txt`
 
 `python3 manage.py runserver`
 
