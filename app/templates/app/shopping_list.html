@@ -25,18 +25,20 @@
         <div id="products" class="text-left">
 
           {% for product in products %}
-            <div class="row">
+            <div class="row ">
 
               {% if product.checked == False %}
-              <span class="col-lg-6 col-sm-5 col-xs-5 card">
-                {{product.name}} 
-              </span>
+                <span class="col-lg-7 col-sm-7 card">
+                  {{product.name}} 
+                </span>
               {% else %}
-              <span class="col-6  col-sm-5 col-xs-5 card text-muted" style="text-decoration: line-through;">
-                {{product.name}} 
-              </span>
+                <span class="col-lg-7  col-sm-7 card text-muted" style="text-decoration: line-through;">
+                  {{product.name}} 
+                </span>
               {% endif %}
-              <span class="price col-lg-2 col-sm-3 card">{{product.price}}</span>
+
+              
+              <span class="price col-lg-2 col-sm-2 card text-center p-0">{{product.price}}</span>
 
 
               <i class="card fa fa-edit p-1" data-bs-toggle="modal" data-bs-target="#myModal" 
@@ -141,8 +143,8 @@
       div = document.createElement('div')
       div.classList.add('row')
 
-      div.innerHTML = `<span class="card col-6">${product_name}</span> 
-                       <span class="price card col-lg-2 col-sm-3">${product_price}</span>
+      div.innerHTML = `<span class="card col-7">${product_name}</span> 
+                       <span class="price card col-lg-2 col-sm-3 text-center">${product_price}</span>
                        <i class="card fa fa-edit p-1" data-bs-toggle="modal" data-bs-target="#myModal" 
                               data-id="${product_id}"
                               data-name="${product_name}" 
