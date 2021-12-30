@@ -482,7 +482,8 @@ def zone_create_day(request):
 
         day.save()
 
-        return JsonResponse(request.POST)
+        #return JsonResponse(request.POST)
+        return redirect('zone_days')
 
 def zone_days(request):
     days = ZoneDay.objects.all()
