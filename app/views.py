@@ -92,7 +92,8 @@ def add_recipe(request):
 
 
         #return JsonResponse(new_recipe_obj)
-        return redirect('index')
+        #return redirect('index')
+        return HttpResponseRedirect( reverse('recipe', args=(new_recipe.id,) ))
 
 def filter_by_tag(request, tag):
     recipes = Recipe.objects.filter(tags__contains=tag)
