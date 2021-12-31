@@ -7,7 +7,7 @@ This a a Web-App for recipes and health.
 [Deploy](https://zone-recipes.herokuapp.com/) 🚀
 
 
-## Requirements
+## Requirements ✔️
 - [x] The application is sufficiently distict the other projects
 - [x] The projects isn't a social network
 - [x] The projects isn't a e-commerce
